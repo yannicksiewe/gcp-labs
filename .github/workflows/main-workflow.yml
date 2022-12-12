@@ -5,7 +5,7 @@ on:
       - develop
       #- main
 env:
-  STAGE: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
+  TF_DIRECTORY: ${{ github.ref == 'refs/heads/main' && 'environments/prod' || 'environments/stage' }}
 
 permissions:
   contents: read
@@ -23,12 +23,6 @@ jobs:
 
       - name: Set Env
         run: |
-          echo "Discovering the environment stage:"
-          if [[ ${{ github.ref == 'refs/heads/main' }} ]]; then
-            echo "TF_DIRECTORY=environments/prod" >> $TF_DIRECTORY
-          else
-            echo "TF_DIRECTORY=environments/stage" >> $TF_DIRECTORY
-          fi
           echo "Environment stage is set:"
           echo "${{ TF_DIRECTORY }}"
 

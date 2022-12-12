@@ -21,10 +21,10 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
-      - name: Set Env
+      - name: print Env
         run: |
           echo "Environment stage is set:"
-          echo "${{ TF_DIRECTORY }}"
+          echo "$TF_DIRECTORY"
 
       - name: Terraform Init
         run: terraform init -chdir=$TF_DIRECTORY

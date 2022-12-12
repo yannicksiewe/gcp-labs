@@ -25,12 +25,12 @@ jobs:
         run: |
           echo "Discovering the environment stage:"
           if [[ ${{ github.ref == 'refs/heads/main' }} ]]; then
-            echo "TF_DIRECTORY=environments/prod" >> $GITHUB_ENV
+            echo "TF_DIRECTORY=environments/prod" >> $TF_DIRECTORY
           else
-            echo "TF_DIRECTORY=environments/stage" >> $GITHUB_ENV
+            echo "TF_DIRECTORY=environments/stage" >> $TF_DIRECTORY
           fi
           echo "Environment stage is set:"
-          echo "${{ GITHUB_ENV }}"
+          echo "${{ TF_DIRECTORY }}"
 
       - name: Terraform Init
         run: terraform init -chdir=$TF_DIRECTORY

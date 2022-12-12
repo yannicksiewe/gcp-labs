@@ -21,13 +21,11 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
 
-      - name: print Env
+      - name: Terraform Init
         run: |
           echo "Working directory is:"
           echo "$TF_DIRECTORY"
-
-      - name: Terraform Init
-        run: terraform -chdir=$TF_DIRECTORY init
+          terraform init -chdir=$TF_DIRECTORY
         env:
           GOOGLE_CREDENTIALS: ${{secrets.GOOGLE_CREDENTIALS}}
 
